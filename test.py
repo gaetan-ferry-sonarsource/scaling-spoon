@@ -12,7 +12,7 @@ def example():
 def exec():
     cmd = request.args['cmd']
     unsafe = UnsafeVariant()
-    return unsafe.some_function(cmd)
+    return system(unsafe.some_function(cmd))
 
 class VariantBase:
     def __init__(self):
@@ -27,7 +27,6 @@ class UnsafeVariant(VariantBase):
     def other_function(self):
         return 4
     def some_function(self, tainted_data):
-        system(tainted_data)
-        return "executed"
+        return tainted_data
     
 app.run()
